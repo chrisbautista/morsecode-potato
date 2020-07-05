@@ -1,6 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import useMorsecode, { MorsecodeAbbrev } from "../../hooks/useMorsecode";
+import useAudioMorsecodePlayer from "../../hooks/useAudioMorsecodePlayer";
+
+const MAXCHARACTERS = 250;
 
 const InputTextArea = styled.textarea`
   border: 1px solid #ddd;
@@ -8,17 +11,21 @@ const InputTextArea = styled.textarea`
   width: 100%;
   margin: 8px 0 0;
   border-radius: 3px;
-  height: 160px;
+  height: 120px;
+  font-family: "Courier New", monospace;
 `;
 
 const Input = styled(InputTextArea)`
   border: 1px solid red;
+  font-size: 1rem;
 `;
 
 const MorsecodeBox = styled(InputTextArea)`
   border: 1px solid #ddd;
-  font-weight: bolder;
+  font-weight: bold;
+  line-height: 1.8;
   background-color: #ededed;
+  font-size: 0.75rem;
 `;
 
 const LabelSpan = styled.span`
@@ -55,6 +62,17 @@ const AbbrevTable = styled.table`
   }
 `;
 
+const AudioPlayer = styled.div`
+margin-top: 1rem;
+margin-left: -5px;
+  button {
+    min-width: 40px;
+    height: 40px;
+    margin: 0 3px;
+    font-weight: 800;
+  }
+`;
+
 const labels = {
   messageLabel: "Message",
   morsecodeLabel: "Morse code",
@@ -62,17 +80,42 @@ const labels = {
   replaceWithAbbrev: "Replace with abbreviations.(see list at the bottom)",
   phrase: "Phrase",
   abbreviation: "Abbreviation",
+  playAudio: "Play audio",
+  stopAudio: "Stop audio",
+  pauseResumeAudio: "Pause/Resume",
 };
 
 const MorsecodeTranslator = () => {
   let [isReplacedAbbrev, setReplacedAbbrev] = useState(false);
   let { message, translated, setMessage } = useMorsecode(
-    labels.sampleMessage,
+    labels.sampleMessage.toUpperCase(),
     isReplacedAbbrev
   );
+  let {
+    play,
+    stop,
+    suspend,
+    setMorsecode,
+    isPlaying,
+    isSuspended,
+    supportsAudio,
+  } = useAudioMorsecodePlayer(message);
+
   function onReplaceAbbrev(e) {
     setReplacedAbbrev(e.target.checked);
   }
+
+  function updateMessage(text) {
+    let newText = text;
+    if(text.length > MAXCHARACTERS){
+      newText = newText.substring(0, MAXCHARACTERS);
+    }
+    setMessage(newText);
+  }
+
+  useEffect(() => {
+    setMorsecode(translated);
+  }, [translated, setMorsecode]);
 
   function renderAbbrev() {
     const abbrevList = Object.keys(MorsecodeAbbrev).map((key) => {
@@ -107,7 +150,7 @@ const MorsecodeTranslator = () => {
       <Input
         id="mpMessageBox"
         value={message}
-        onChange={(e) => setMessage(e.target.value)}
+        onChange={(e) => updateMessage(e.target.value.toUpperCase())}
       />
       <div>
         <label>
@@ -120,6 +163,34 @@ const MorsecodeTranslator = () => {
           <LabelSpan>{labels.replaceWithAbbrev}</LabelSpan>
         </label>
       </div>
+      {supportsAudio && (
+        <AudioPlayer>
+          <button
+            onClick={play}
+            className="play"
+            disabled={!message || isPlaying}
+            aria-label={labels.playAudio}
+          >
+            {"[>"}
+          </button>
+          <button
+            onClick={suspend}
+            className="suspend"
+            disabled={!message || (!isPlaying && !isSuspended)}
+            aria-label={labels.pauseResumeAudio}
+          >
+            {isSuspended ? "[>>" : "||"}
+          </button>
+          <button
+            onClick={stop}
+            className="stop"
+            disabled={!message || !isPlaying}
+            aria-label={labels.stopAudio}
+          >
+            {"[]"}
+          </button>
+        </AudioPlayer>
+      )}
       <MorseCodeLabel htmlFor="mpMorsecodeBox">
         {labels.morsecodeLabel}
       </MorseCodeLabel>

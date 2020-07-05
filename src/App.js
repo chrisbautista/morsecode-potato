@@ -4,7 +4,7 @@ import styled from "styled-components";
 import MorsecodeTranslator from "./components/MorsecodeTranslator";
 
 const AppContainer = styled.div`
-  padding: 4rem;
+  padding: 1rem 2rem;
   margin: 0 auto;
   max-width: 1200px;
   @media screen and (max-width: 840px) {
@@ -19,23 +19,28 @@ const GithubAnchor = styled.a`
   right: 0;
   padding: 1rem;
   background-color: yellow;
-  border: 1px solid #ddd;
-  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.3);
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
 
   @media screen and (max-width: 840px) {
-    width: 80px;
+    width: 20px;
     font-size: 0.75rem;
+    line-height: 1.5;
     padding: 5px;
+    text-decoration: none;
     text-align: right;
-    transform: rotate(45deg);
-    top: 25px;
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+    top: 0;
+    span {
+      display:none;
+    }
   }
 `;
 
 function GitHub() {
   return (
     <GithubAnchor href="https://github.com/chrisbautista/morsecode-potato">
-      codespud @ github
+      <span>codespud @ </span>github
     </GithubAnchor>
   );
 }

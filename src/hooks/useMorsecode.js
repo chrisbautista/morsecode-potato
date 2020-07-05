@@ -5,7 +5,7 @@ export default function useMorsecode(initial, shouldReplaceWithAbbrev = true) {
   let [translated, setTranslated] = useState("");
 
   function cleanMessage(msg) {
-    return msg ? msg.toUpperCase().trim() : "";
+    return msg ? msg.trim() : "";
   }
 
   useEffect(() => {
