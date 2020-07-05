@@ -5,21 +5,21 @@ export default function useMorsecode(initial, shouldReplaceWithAbbrev = true) {
   let [translated, setTranslated] = useState("");
 
   function cleanMessage(msg) {
-    if (!msg) return "";
-    return msg.trim();
+    return msg ? msg.toUpperCase().trim() : "";
   }
 
   useEffect(() => {
     let cleanedMessage = cleanMessage(message);
+
     let tmpMessage = shouldReplaceWithAbbrev
-      ? replaceWithAbbrev(cleanMessage(message))
+      ? replaceWithAbbrev(cleanedMessage)
       : cleanedMessage;
+
     if (tmpMessage !== cleanedMessage) {
       setMessage(tmpMessage);
     }
 
-    let translatedMessage = alphaToMorsecode(tmpMessage);
-    setTranslated(translatedMessage);
+    setTranslated(alphaToMorsecode(tmpMessage));
   }, [message, shouldReplaceWithAbbrev]);
 
   return {

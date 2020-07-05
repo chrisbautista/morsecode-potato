@@ -12,5 +12,10 @@ Hook variables
 - translated, the message in morse code
 - setMessage, function to update the message
 
+## Todo
+- play to audio
+- visualize message
+- save to file
+
 ## Contributor
 @codespud
