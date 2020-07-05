@@ -1,25 +1,41 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import styled from 'styled-components';
+import MorsecodeTranslator from './components/MorsecodeTranslator'
+
+const AppContainer = styled.div`
+  padding: 4rem;
+  margin: 0 auto;
+  max-width: 1200px;
+  @media screen and (max-width: 840px){
+    padding: 1rem;
+  }
+`;
+
+const GithubAnchor = styled.a`
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 1rem;
+  background-color: yellow;
+  border: 1px solid #ddd;
+  box-shadow: 0 1px 5px 0 rgba(0,0,0,0.3);
+`;
+
+function GitHub(){
+  return <GithubAnchor href="https://github.com/chrisbautista/morsecode-potato">
+    codespud @ github
+  </GithubAnchor>;
+}
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AppContainer>
+        <h1>Morsecode-Potato</h1>
+        <MorsecodeTranslator />
+        <GitHub />
+    </AppContainer>
   );
 }
 
