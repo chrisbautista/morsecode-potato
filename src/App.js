@@ -6,7 +6,7 @@ import MorsecodeTranslator from "./components/MorsecodeTranslator";
 const AppContainer = styled.div`
   padding: 1rem 2rem;
   margin: 0 auto;
-  max-width: 1200px;
+  max-width: 800px;
   @media screen and (max-width: 840px) {
     padding: 1rem;
   }

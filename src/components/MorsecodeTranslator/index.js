@@ -1,3 +1,18 @@
+// Copyright 2019–2020, Chris Bautista
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+//
+
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import useMorsecode, { MorsecodeAbbrev } from "../../hooks/useMorsecode";
@@ -63,13 +78,25 @@ const AbbrevTable = styled.table`
 `;
 
 const AudioPlayer = styled.div`
-margin-top: 1rem;
-margin-left: -5px;
+  margin-top: 1rem;
+  margin-left: -5px;
   button {
     min-width: 40px;
     height: 40px;
     margin: 0 3px;
     font-weight: 800;
+    border-radius: 4px;
+    border: 0;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.3);
+
+    &:disabled{
+      background-color: #9f9f9f;
+    }
+
+    &:focus{
+      border: 0;
+      box-shadow: 0 -2px 2px 0 rgba(0,0,0,0.3);
+    }
   }
 `;
 
@@ -107,7 +134,7 @@ const MorsecodeTranslator = () => {
 
   function updateMessage(text) {
     let newText = text;
-    if(text.length > MAXCHARACTERS){
+    if (text.length > MAXCHARACTERS) {
       newText = newText.substring(0, MAXCHARACTERS);
     }
     setMessage(newText);
