@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Morsecode-potato",
+  "name": "React hooks to work with morse code",
   "icons": [
     {
       "src": "favicon.ico",

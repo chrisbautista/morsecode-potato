@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "8250e9d00b6b226fdbfe5c8a5b0bc516",
+    "revision": "3cb1917f81e414c48959aa8dc4573b30",
     "url": "/morsecode-potato/index.html"
   },
   {
-    "revision": "3f1c84f35be6697a918e",
+    "revision": "16ad96b96bcff7a64eff",
     "url": "/morsecode-potato/static/css/main.e13fe721.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/morsecode-potato/static/js/2.03c44d5b.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "3f1c84f35be6697a918e",
-    "url": "/morsecode-potato/static/js/main.a7e3a46b.chunk.js"
+    "revision": "16ad96b96bcff7a64eff",
+    "url": "/morsecode-potato/static/js/main.ea1a6027.chunk.js"
   },
   {
     "revision": "53265e9ee458317b2409",
