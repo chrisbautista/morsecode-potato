@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/morsecode-potato/precache-manifest.cd27cd108a6b176115066f11595d72a1.js"
+  "/morsecode-potato/precache-manifest.7843088c4c41471be901649beb2b88d7.js"
 );
 
 self.addEventListener('message', (event) => {
