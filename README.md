@@ -1,5 +1,5 @@
 # morsecode-potato
-A exercise on wrapping morsecode translations into a custom React hook. 
+A exercise on wrapping morsecode translations into React hooks. 
 
 ## UseMorsecode Hook
 
@@ -34,6 +34,7 @@ Hook variables
 - ~~play to audio~~
 - visualize message(lights)
 - save to file
+- gracefully notify user of demo site browser support
 
 ## Contributor
 @codespud

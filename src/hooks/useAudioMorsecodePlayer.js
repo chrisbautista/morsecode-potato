@@ -1,34 +1,31 @@
+// Copyright 2019–2020, Chris Bautista
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+//
+
 const { useState, useRef } = require("react");
 
-// 
-// useAudioMorseCodePlayer
-// 
-// Parameters: 
-// - initial, value to start with
-// - oscillatorType, (default "sine")
-// - frequency, (default "750") - Hz
-// - dotTiming, (default "0.08") -- computation T = 1.2s / 15 wpm(words per min)
-// > https://en.wikipedia.org/wiki/Morse_code#Representation,_timing,_and_speeds 
-//
-// Hook variables
-// - play, play generated audio
-// - stop, stop generated audio
-// - suspend, pause generated audio
-// - isPlaying, flag when audio is playing
-// - isSuspended, flag when paused
-// - supportsAudio, this is set to TRUE if browser supports audio
-// - setMorsecode, function to set encoded message
-//
 export default function useAudioMorseCodePlayer(
   initial,
   oscillatorType = "sine",
-  frequency = 750, 
+  frequencyInHz = 750, 
   dotTiming = 0.08 
 ) {
-  let [morseCode, setMorsecode] = useState(initial);
+  let [morseCode, setMorseCode] = useState(initial);
   let [isPlaying, setIsPlaying] = useState(false);
   let [isSuspended, setIsSuspended] = useState(false);
-  let supportsAudio = window.AudioContext || window.webkitAudioContext;
+
+  let supportsAudio = !!(window.AudioContext || window.webkitAudioContext);
 
   let oscillatorRef = useRef();
   let actxRef = useRef();
@@ -50,7 +47,7 @@ export default function useAudioMorseCodePlayer(
       actxRef.current,
       morseCode,
       oscillatorType,
-      frequency,
+      frequencyInHz,
       dotTiming
     );
 
@@ -97,9 +94,10 @@ export default function useAudioMorseCodePlayer(
     isPlaying,
     isSuspended,
     supportsAudio,
-    setMorsecode,
+    setMorseCode,
   };
 }
+
 
 export function getAudioContext() {
   const AudioContext = window.AudioContext || window.webkitAudioContext;

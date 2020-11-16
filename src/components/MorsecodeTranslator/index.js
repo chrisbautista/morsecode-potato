@@ -15,7 +15,8 @@
 
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import useMorsecode, { MorsecodeAbbrev } from "../../hooks/useMorsecode";
+import { MorsecodeAbbreviation } from "../../hooks/morsecode"
+import useMorsecode from "../../hooks/useMorsecode";
 import useAudioMorsecodePlayer from "../../hooks/useAudioMorsecodePlayer";
 
 const MAXCHARACTERS = 250;
@@ -113,23 +114,23 @@ const labels = {
 };
 
 const MorsecodeTranslator = () => {
-  let [isReplacedAbbrev, setReplacedAbbrev] = useState(false);
+  let [isReplacedAbbreviation, setReplacedAbbreviation] = useState(false);
   let { message, translated, setMessage } = useMorsecode(
     labels.sampleMessage.toUpperCase(),
-    isReplacedAbbrev
+    isReplacedAbbreviation
   );
   let {
     play,
     stop,
     suspend,
-    setMorsecode,
+    setMorseCode,
     isPlaying,
     isSuspended,
     supportsAudio,
   } = useAudioMorsecodePlayer(message);
 
   function onReplaceAbbrev(e) {
-    setReplacedAbbrev(e.target.checked);
+    setReplacedAbbreviation(e.target.checked);
   }
 
   function updateMessage(text) {
@@ -141,16 +142,16 @@ const MorsecodeTranslator = () => {
   }
 
   useEffect(() => {
-    setMorsecode(translated);
-  }, [translated, setMorsecode]);
+    setMorseCode(translated);
+  }, [translated, setMorseCode]);
 
-  function renderAbbrev() {
-    const abbrevList = Object.keys(MorsecodeAbbrev).map((key) => {
+  function renderAbbreviation() {
+    const abbrevList = Object.keys(MorsecodeAbbreviation).map((key) => {
       let title = key.toLowerCase();
       title = title.charAt(0).toUpperCase() + title.slice(1);
       return (
         <tr key={"abbrev" + key}>
-          <td>{MorsecodeAbbrev[key]}</td>
+          <td>{MorsecodeAbbreviation[key]}</td>
           <td>{title}</td>
         </tr>
       );
@@ -184,7 +185,7 @@ const MorsecodeTranslator = () => {
           <input
             type="checkbox"
             value={1}
-            checked={isReplacedAbbrev}
+            checked={isReplacedAbbreviation}
             onChange={onReplaceAbbrev}
           />
           <LabelSpan>{labels.replaceWithAbbrev}</LabelSpan>
@@ -222,7 +223,7 @@ const MorsecodeTranslator = () => {
         {labels.morsecodeLabel}
       </MorseCodeLabel>
       <MorsecodeBox id="mpMorsecodeBox" value={translated} readOnly />
-      <div>{renderAbbrev()}</div>
+      <div>{renderAbbreviation()}</div>
     </div>
   );
 };
