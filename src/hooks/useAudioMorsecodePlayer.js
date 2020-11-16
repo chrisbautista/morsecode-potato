@@ -58,6 +58,7 @@ export default function useAudioMorseCodePlayer(
 
     setIsPlaying(true);
     setIsSuspended(false);
+    
     oscillatorRef.current.start(0);
   }
 
@@ -99,7 +100,7 @@ export default function useAudioMorseCodePlayer(
 }
 
 
-export function getAudioContext() {
+function getAudioContext() {
   const AudioContext = window.AudioContext || window.webkitAudioContext;
   const actx = new AudioContext();
   return actx;
