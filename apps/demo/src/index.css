@@ -113,9 +113,8 @@ body {
 }
 
 .form-strip {
-  display: flex;
-  justify-content: space-between;
-  gap: 24px;
+  display: inline-flex;
+  gap: 6px;
   background: var(--strip);
   padding: 7px 14px;
 }
@@ -174,6 +173,7 @@ body {
 
 .transport {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 12px;
   margin: 1.25rem 0;
@@ -398,13 +398,14 @@ body {
 }
 
 .operator-card {
+  display: flex;
+  flex-direction: column;
   margin-top: 2rem;
-  display: inline-block;
   min-width: 260px;
 }
 
 .operator-scroll {
-  max-height: 210px;
+  max-height: 500px;
   overflow-y: auto;
   scrollbar-width: thin;
 }
