@@ -1,0 +1,52 @@
+{
+  "name": "@codespud/react-morsecode",
+  "version": "1.0.0",
+  "description": "Morse code translation, audio/visual playback, and file export as React hooks with a framework-free core.",
+  "license": "Apache-2.0",
+  "author": "Chris Bautista",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chrisbautista/morsecode-potato.git",
+    "directory": "packages/react-morsecode"
+  },
+  "homepage": "https://chrisbautista.github.io/morsecode-potato",
+  "keywords": [
+    "morse",
+    "morse-code",
+    "react",
+    "hooks",
+    "web-audio"
+  ],
+  "type": "module",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0 || ^19.0.0"
+  },
+  "devDependencies": {
+    "@testing-library/dom": "^10.4.0",
+    "@testing-library/react": "^16.3.0",
+    "@types/react": "^19.0.0",
+    "jsdom": "^26.0.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "typescript": "^5.8.0",
+    "vitest": "^3.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
