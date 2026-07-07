@@ -61,11 +61,7 @@ npm run build   # builds the package, then the demo
 npm run dev     # builds the package, then starts the demo dev server
 ```
 
-The demo deploys to GitHub Pages automatically on push to `master`
-(`.github/workflows/deploy.yml`); the package publishes to npm on a GitHub release
-(`.github/workflows/publish.yml`, requires an `NPM_TOKEN` repo secret).
-
-## Todo
+## Features
 
 - visualize message (lights) — ✅ signal light in the demo
 - save to file — ✅ `.wav` and `.txt`
